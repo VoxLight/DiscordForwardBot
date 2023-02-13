@@ -1,2 +1,3 @@
 # DiscordForwardBot
-An easy to use bot that can forward messages between channels and servers.
+A very easy to use bot with simple commands to auto forward messages between 
+channels and to copy a channel and message history between servers.

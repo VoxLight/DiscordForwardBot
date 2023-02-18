@@ -26,8 +26,9 @@ class DefaultBot(commands.Bot):
         logger = logging.getLogger(__name__)
         logger.setLevel(self.config.bot_log_level)
 
+        utils.make_path(self.config.bot_log_path)
         handler = logging.handlers.RotatingFileHandler(
-            filename=self.config.bot_logs,
+            filename=self.config.bot_log_path,
             encoding='utf-8',
             maxBytes=1 * 1024 * 1024,  # 1 MiB
             backupCount=5,  # Rotate through 5 files
@@ -41,10 +42,11 @@ class DefaultBot(commands.Bot):
 
     def _setup_nextcord_logging(self):
         logger = logging.getLogger("nextcord")
-        logger.setLevel(self.config.bot_log_level)
+        logger.setLevel(self.config.nextcord_log_level)
 
+        utils.make_path(self.config.nextcord_log_path)
         handler = logging.handlers.RotatingFileHandler(
-            filename=self.config.nextcord_logs,
+            filename=self.config.nextcord_log_path,
             encoding='utf-8',
             maxBytes=5 * 1024 * 1024,  # 32 MiB
             backupCount=5,  # Rotate through 5 files

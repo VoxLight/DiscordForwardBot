@@ -4,7 +4,10 @@ import configparser
 import logging
 import logging.handlers
 from . import configdataclass as cfg
+from . import utils
 from os import listdir
+
+
 
 class DefaultBot(commands.Bot):
     CONFIG_LOCATION = "./config.ini"
@@ -60,17 +63,7 @@ class DefaultBot(commands.Bot):
 
     @property
     def config(self) -> cfg.ConfigDataClass:
-        # make sure we have a config file
-        # and if not, create one
-        config = None
-        try:
-            return cfg.ConfigDataClass.from_file(DefaultBot.CONFIG_LOCATION)
-        except FileNotFoundError:
-            return self._make_config()
-        
-    def _make_config(self):
-        # TODO: This later...
-        return cfg.ConfigDataClass(configparser.ConfigParser())
+        utils.get_config()
 
     def load_cogs(self):
         self.logger.info("Loading cogs...")

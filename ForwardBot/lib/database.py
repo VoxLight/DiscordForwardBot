@@ -1,6 +1,18 @@
-from sqlalchemy import create_engine, Column, Integer, String, ForeignKey, Table, JSON
+import sqlalchemy.exc
+import sqlite3
+from sqlalchemy import (
+    create_engine, 
+    Column, 
+    Integer, 
+    String, 
+    ForeignKey, 
+    Table, 
+    JSON,
+    exc,
+)
 from sqlalchemy.orm import sessionmaker, relationship
 from sqlalchemy.ext.declarative import declarative_base
+from . import utils
 
 Base = declarative_base()
 db_init = False
@@ -31,7 +43,13 @@ class Channel(Base):
 def get_db():
     if db_init:
         return db
-    engine = create_engine('sqlite:///storage/forwards.db')
+
+    config = utils.get_config()
+
+    utils.make_path(config.db_location)
+
+    engine = create_engine("sqlite://"+config.db_location.strip("."))
+
     Base.metadata.create_all(engine)
     db = sessionmaker(bind=engine)()
     return db

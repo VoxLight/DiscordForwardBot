@@ -14,6 +14,10 @@ class ConfigDataClass:
         config.read(path)
         return cls(config)
 
+    @classmethod
+    def empty(cls):
+        return cls(configparser.ConfigParser())
+
 
     def __init__(
         self, 

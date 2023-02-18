@@ -70,6 +70,8 @@ class Forwarder(commands.Cog):
         files = [await attachment.to_file() for attachment in message.attachments] if message.attachments else None
         embeds = message.embeds
 
+        #TODO: Embeds that come from a url to a file don't render properly
+
         # Send a message with the content, files, and embeds
         await channel.send(
             content=content,

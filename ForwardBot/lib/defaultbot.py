@@ -65,7 +65,7 @@ class DefaultBot(commands.Bot):
 
     @property
     def config(self) -> cfg.ConfigDataClass:
-        utils.get_config()
+        return utils.get_config()
 
     def load_cogs(self):
         self.logger.info("Loading cogs...")

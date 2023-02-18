@@ -1,6 +1,10 @@
 # Project Specifications
 ForwardBot/config.ini
 
+# Database
+*.db
+
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 

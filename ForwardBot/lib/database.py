@@ -31,7 +31,7 @@ class Channel(Base):
 def get_db():
     if db_init:
         return db
-    engine = create_engine('sqlite:///example.db')
+    engine = create_engine('sqlite:///storage/forwards.db')
     Base.metadata.create_all(engine)
     db = sessionmaker(bind=engine)()
     return db
